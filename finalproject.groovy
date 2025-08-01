@@ -9,11 +9,10 @@ pipeline{
                 steps{
                      sh '''scp -o StrictHostKeyChecking=no -r * azureuser@20.193.250.218:/home/azureuser/'''
                  
+                     }
                 }
-            }
 
             }
         }
  
     }
-}
