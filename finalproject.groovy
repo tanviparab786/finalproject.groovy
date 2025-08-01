@@ -5,6 +5,15 @@ pipeline{
             steps{
                 git branch: 'main', url: 'https://github.com/tanviparab786/finalproject.code.git'
             }
+            stage('sending code files'){
+                steps{
+                     sh '''scp -o StrictHostKeyChecking=no -r * azureuser@20.193.250.218:/home/azureuser/'''
+                 
+                }
+            }
+
+            }
         }
+ 
     }
 }
