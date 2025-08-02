@@ -13,9 +13,13 @@ pipeline{
                     }
                 }
                     stage('sending template file') {
-                steps{
-                   withCredentials([sshUserPrivateKey(credentialsId: 'kubernetes-p1', keyFileVariable: 'KEY')]) {
-                     sh """scp -o StrictHostKeyChecking=no -i $KEY -r templates azureuser@4.186.26.17:/home/azureuser/"""
+                       withCredentials([sshUserPrivateKey(credentialsId: 'kubernetes-p1', keyFileVariable: 'KEY')]) {
+                        sh '''echo "Testing SSH connection..."
+                            ssh -o StrictHostKeyChecking=no -i $KEY azureuser@4.186.26.17 "echo Connected successfully"
+      
+                              echo "Sending files..."
+                             scp -o StrictHostKeyChecking=no -i $KEY -r templates azureuser@4.186.26.17:/home/azureuser/'''
+                       }
                     }
                 }  
                      
