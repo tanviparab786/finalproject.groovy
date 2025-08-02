@@ -14,7 +14,7 @@ pipeline{
                 }
                     stage('sending template file') {
                 steps{
-                   withCredentials([sshUserPrivateKey(credentialsId: 'kubernetes-project', keyFileVariable: 'KEY')]) {
+                   withCredentials([sshUserPrivateKey(credentialsId: 'kubernetes-p1', keyFileVariable: 'KEY')]) {
                      sh """scp -o StrictHostKeyChecking=no -i $KEY -r templates azureuser@4.186.26.17:/home/azureuser/"""
                     }
                 }  
