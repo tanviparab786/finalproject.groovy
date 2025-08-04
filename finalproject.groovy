@@ -10,7 +10,7 @@ pipeline {
     }
         stage('sending code files') {
             steps {
-                sh ''' scp -o StrictHostKeyChecking=no -r * azureuser@4.240.96.242:/home/azureuser/'''
+                sh ''' scp -o StrictHostKeyChecking=no -r * azureuser@4.240.96.242:/home/azureuser/finalproject/'''
             }
         }
 
