@@ -17,7 +17,7 @@ pipeline {
         stage('sending template file') {
             steps {
                     // sshagent(['kubernetes-p1']) {
-                    sh '''scp -o StrictHostKeyChecking=no -i id_k8s -r templates azureuser@4.186.26.17:/home/azureuser/'''
+                    sh '''scp -o StrictHostKeyChecking=no -i ~/.ssh/id_k8s -r templates azureuser@4.186.26.17:/home/azureuser/'''
             //    }
            }
        }
