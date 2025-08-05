@@ -29,7 +29,7 @@ pipeline {
               
             withCredentials([string(credentialsId: 'dockerimage', variable: 'docker_password')]) {
                 sh 'hostname'
-                sh ''' ssh -o StrictHostKeyChecking=no azureuser@4.240.96.242 <<EOF echo "$docker_password" | docker login -u "tanvi2828" --password-stdin EOF '''
+                sh ''' ssh -o StrictHostKeyChecking=no azureuser@4.240.96.242 echo "$docker_password" | docker login -u "tanvi2828" --password-stdin'''
                 sh '''ssh -o StrictHostKeyChecking=no azureuser@4.240.96.242 "docker image push tanvi2828/f1f8"'''                                                        
                  //    sh docker image push tanvi2828/$JOB_NAME:v1.$BUILD_ID
                 //   sh docker image push tanvi2828/$JOB_NAME:latest
