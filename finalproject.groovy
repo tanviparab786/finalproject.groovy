@@ -16,27 +16,28 @@ pipeline {
 
         stage('sending template file') {
             steps {
-                    // sshagent(['kubernetes-p1']) {
+                    // sshagent(['kubernetes-project']) {
                     sh '''scp -o StrictHostKeyChecking=no -i ~/.ssh/id_k8s -r templates azureuser@4.186.26.17:/home/azureuser/'''
             //    }
            }
        }
 
        stage('Build and push docker image'){
-        steps{
-            withCredentials([string(credentialsId: 'dockerimage', variable: 'docker password')]) {
-                sh 'docker login -u  -p ${dockerimage}'
-                sh 'docker image push tanvi2828/f1f8'
-                // sh 'docker image push tanvi2828/$JOB_NAME:v1.$BUILD_ID'
-                // sh 'docker image push tanvi2828/$JOB_NAME:latest'
 
-                 
+        steps{
+               sshagent(['kubernetes-p1']) {
+              
+            withCredentials([string(credentialsId: 'dockerimage', variable: 'docker password')]) {
+                sh '''ssh -o StrictHostKeyChecking=no azureuser@4.240.96.242 "docker login -u  -p ${dockerimage}"'''
+                sh '''ssh -o StrictHostKeyChecking=no azureuser@4.240.96.242 "docker image push tanvi2828/f1f8"'''                                                        
+                 //    sh docker image push tanvi2828/$JOB_NAME:v1.$BUILD_ID
+                //   sh docker image push tanvi2828/$JOB_NAME:latest
                 }
-            
             }
         } 
     }
 
+}
 }
     
 
