@@ -25,7 +25,7 @@ pipeline {
        stage('Build and push docker image'){
 
         steps{
-               sshagent(['kubernetes-p1']) {
+               sshagent(['docker1']) {
               
             withCredentials([string(credentialsId: 'dockerimage', variable: 'docker password')]) {
                 sh ''' ssh -o StrictHostKeyChecking=no azureuser@4.240.96.242 <<EOF echo "$docker password" | docker login -u "tanvi2828" --password-stdin EOF '''
