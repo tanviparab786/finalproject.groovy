@@ -21,8 +21,25 @@ pipeline {
             //    }
            }
        }
+
+       stage('Build and push docker image'){
+        steps{
+            withCredentials([string(credentialsId: 'dockerimage', variable: 'docker password')]) {
+                sh 'docker login -u  -p ${dockerimage}'
+                sh 'docker image push tanvi2828/f1f8'
+                // sh 'docker image push tanvi2828/$JOB_NAME:v1.$BUILD_ID'
+                // sh 'docker image push tanvi2828/$JOB_NAME:latest'
+
+                 
+                }
+            
+            }
+        } 
     }
 
 }
+    
+
+
 
 
