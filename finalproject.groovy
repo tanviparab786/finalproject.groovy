@@ -22,6 +22,9 @@ pipeline {
         stage('Build and push docker image') {
             steps {
                 sshagent(['docker1']) {
+                    sh  '''ssh -o StrictHostKeyChecking=no azureuser@4.240.96.242 "docker image push tanvi2828/f1f8"'''
+                    sh 'build the image'
+
                     withCredentials([string(credentialsId: 'dockerimage', variable: 'DOCKER_PASSWORD')]) {
                         sh 'hostname'
                         sh """
