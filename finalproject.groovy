@@ -31,6 +31,7 @@ pipeline {
                         //    sh docker image push tanvi2828/$JOB_NAME:v1.$BUILD_ID
                         //   sh docker image push tanvi2828/$JOB_NAME:latest
                     }
+                }
         stage('appling the changes') {
                         steps {
                             sshagent(['kubernetes']) {
@@ -43,7 +44,6 @@ pipeline {
             }
         }
     }
-}
     
 
 
