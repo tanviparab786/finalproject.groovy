@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sshagent(['docker1']) {
                     
-                    sh  '''ssh -o StrictHostKeyChecking=no azureuser@4.240.96.242 "docker build -t tanvi2828/f1f8 ."'''
+                    sh  '''ssh -o StrictHostKeyChecking=no azureuser@4.240.96.242 "docker build -t tanvi2828/f1f8 ~/finalproject/."'''
                 
 
                     withCredentials([string(credentialsId: 'dockerimage', variable: 'DOCKER_PASSWORD')]) {
