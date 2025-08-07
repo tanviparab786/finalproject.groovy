@@ -37,8 +37,11 @@ pipeline {
         stage('appling the changes') {
                         steps {
                             sshagent(['kubernetes']) {
-                                sh'kubectl delete -f templates'
-                                sh 'kubectl apply -f templates'
+                                sh '''ssh -o StrictHostKeyChecking=no azureuser@4.186.26.17' 'kubectl delete -f /home/azureuser/templates'''
+                                sh '''ssh -o StrictHostKeyChecking=no azureuser@4.186.26.17' 'kubectl apply -f /home/azureuser/templates'''
+ 
+                                
+                                
                             }
                         }
                     }
